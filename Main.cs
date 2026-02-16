@@ -7,8 +7,8 @@ class Program
     static void Main(string[] args)
     {
         //Creates fighter with their starting health and names
-        Fighter gojo = new Fighter(120, "Gojo");
-        Fighter sukuna = new Fighter(120, "Sukuna");
+        Fighter gojo = new Fighter(200, "Gojo");
+        Fighter sukuna = new Fighter(200, "Sukuna");
         
         //plays the intro
         Cutscene();
@@ -112,13 +112,16 @@ class Program
                }
                 
                /*----------------FIGHT LOOP--------------------*/
+               //Handles the turn-based fight until one fighter's health reaches 0  
                static void Fight(Fighter gojo, Fighter sukuna)
                {
                    //Continue fighting while both fighters are alive
                    while (gojo.IsAlive() && sukuna.IsAlive())
                    {
                        Console.WriteLine("Your move!");
-                       Console.WriteLine("1. Hand to Hand");
+                       Console.WriteLine("1.    Hand to Hand (Basic Attack) ");
+                       Console.WriteLine("2.    Attack imbued with Curse Energy (Has chance of 5% to land a Black Flash");
+                       Console.WriteLine("What's your move?: ");
                         
                        //Validate user input
                        string? input = Console.ReadLine();
@@ -135,12 +138,18 @@ class Program
                            case 1:
                                gojo.HandToHand(sukuna);
                                break;
+                           case 2:
+                               gojo.BlackFlash(sukuna);
+                               break;
+                           default:
+                               Console.WriteLine("Not in the Choices!");
+                               break;
                        }
                         
                        //Enemy turn
                        if (sukuna.IsAlive())
                        {
-                           sukuna.HandToHand(gojo);
+                           sukuna.SukunaAi(gojo);
                            Console.WriteLine("Sukuna turn!");
                            Console.WriteLine($"Gojo HP: {gojo.Health} - Sukuna HP: {sukuna.Health} ");
                            Thread.Sleep(2000);
