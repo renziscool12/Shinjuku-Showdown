@@ -30,3 +30,4 @@ Fight between **Gojo** and **Sukuna** using hand-to-hand combat.
 - Buffed both fighters health 120 to 200
 - Added Black Flash for both fighters
 - Added Sukuna AI
+- Added cutscene for hitting Black Flash
