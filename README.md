@@ -25,3 +25,8 @@ Fight between **Gojo** and **Sukuna** using hand-to-hand combat.
 - Show health bars visually  
 - Add a “skip cutscene” feature  
 - Expand game to multiple rounds or multiple fighters
+
+## UPDATE 1.0
+- Buffed both fighters health 120 to 200
+- Added Black Flash for both fighters
+- Added Sukuna AI
