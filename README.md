@@ -33,16 +33,14 @@ Fight between **Gojo** and **Sukuna** using hand-to-hand combat.
 - Added cutscene for hitting Black Flash
 
 ## UPDATE 1.1
-- Added RCT healing mechanics
-- Added RCT for Sukuna AI
-- Added RCT for Gojo/Player
-- Nerfed Hand to Hand Combat
-  
-  Damage (15,30) -> (9,19)
+- Added RCT healing mechanics:
+  - Sukuna AI
+  - Gojo/Player
+- Added MaxHealth and ensured RCT doesn’t exceed it
+- General bug fixes and balance tweaks
+- Nerfed Hand-to-Hand Combat: damage reduced from (15–30) to (9–19)
+- Nerfed Black Flash: damage reduced from 50 to 37
 
-- Nerfed Black Flash
-
-  Damage 50 -> 37
 
   
   
