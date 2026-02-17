@@ -6,7 +6,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        //Creates fighter with their starting health and names
+        //Creates fighter with their starting health, names and max health
         Fighter gojo = new Fighter(200, "Gojo", 200);
         Fighter sukuna = new Fighter(200, "Sukuna", 200);
         
