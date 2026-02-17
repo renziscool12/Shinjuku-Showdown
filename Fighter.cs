@@ -5,7 +5,7 @@ namespace Practice;
 class Fighter
 {
     //fields
-    public string Name { get; }
+    private string Name { get; }
     //encapsulation
     public int Health { get; private set; }
     // Single shared Random instance for generating random numbers throughout the class.
@@ -13,18 +13,23 @@ class Fighter
     // 'readonly' means it can only be assigned once and not changed later.
     private static readonly Random Rnd = new Random();
     
+    //rct uses
+    private int rctUse = 3;
+        
+    private int MaxHealth;
     //constructor
-    public Fighter(int health, string name)
+    public Fighter(int health, string name, int maxhealth)
     {
         Name = name;
         Health = health;
+        MaxHealth = maxhealth;
     }
 
     //Hand-to-hand Combat method
     public void HandToHand(Fighter target)
     {
-        //deals some random damage between 15-30
-        int damage = Rnd.Next(15, 30);
+        //deals some random damage between 9-19
+        int damage = Rnd.Next(9, 19);
         target.Health -= damage;
         //prevents negative health
         if (target.Health < 0)
@@ -42,7 +47,7 @@ class Fighter
         //massive damage
         if (Rnd.Next(0, 101) <= 5)
         {
-            int damage = 50;
+            int damage = 37;
             target.Health -= damage;
             Console.WriteLine($"{Name} unleashed BLACK FLASH for {damage} damage! CRITICAL HIT!");
             BlackFlashCutscene();
@@ -51,7 +56,7 @@ class Fighter
         else
         {
             //if black flash didn't occur
-            int damage = Rnd.Next(19, 30);
+            int damage = Rnd.Next(9, 18);
             target.Health -= damage;
             //Displays damage dealt to target from cursed energy attack
             Console.WriteLine($"{Name} landed a cursed energy attack {damage} damage!");
@@ -64,7 +69,7 @@ class Fighter
         }
     }
 
-    //ai so it can choose what skill it uses
+    //AI so it can choose what skill it uses
     public void SukunaAi(Fighter target)
     {
         int choice = Rnd.Next(1, 3);
@@ -77,6 +82,54 @@ class Fighter
                 BlackFlash(target);
                 break;
         }
+        //if below 30 it heals
+        if (Health <= 30 && rctUse > 0)
+        {
+           SukunaReverseCursedTechnique();
+        }
+        
+        //call the method
+        NoMoreRct();
+
+    }
+    
+    /*---RCT Healing---*/
+    public void SukunaReverseCursedTechnique()
+    {
+        int healthAmount = 50;
+        Health += healthAmount;
+
+        if (Health > MaxHealth)
+        {
+            Health = MaxHealth;
+        }
+        Console.WriteLine($"{Name} heals using RCT!");
+        rctUse--;
+    }
+    
+    //if rctuse is 0 it prints this
+    public void NoMoreRct()
+    {
+        if (rctUse <= 0)
+        {
+            rctUse = 0;
+            Console.WriteLine($"{Name} can't use RCT due to overuse!");
+        }
+    }
+
+    /*---GOJO'S RCT---*/
+    public void GojoReverseCursedTechnique()
+    {
+        int healthAmount = 50;
+        Health += healthAmount;
+
+        if (Health > MaxHealth)
+        {
+            Health = MaxHealth;
+        }
+        Console.WriteLine($"{Name} heals using RCT!");
+        rctUse--;
+        NoMoreRct();
     }
     
     //Cutscene for hitting Black Flash
