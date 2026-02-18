@@ -81,6 +81,9 @@ class Fighter
             case 2:
                 BlackFlash(target);
                 break;
+            case 3:
+                Cleave(target);
+                break;
         }
         //if below 30 it heals
         if (Health <= 30 && rctUse > 0)
@@ -91,6 +94,20 @@ class Fighter
         //call the method
         NoMoreRct();
 
+    }
+    
+    //Sukuna moveset
+    //damage (15-23)
+    public void Cleave(Fighter target)
+    {
+        int damage = Rnd.Next(15, 23);
+        target.Health -= damage;
+        
+        if (target.Health <= 0)
+        {
+            target.Health = 0;
+        }
+        Console.WriteLine($"{Name} uses cleave for {damage} damage!");
     }
     
     /*---RCT Healing---*/
