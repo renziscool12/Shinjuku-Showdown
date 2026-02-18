@@ -41,7 +41,12 @@ Fight between **Gojo** and **Sukuna** using hand-to-hand combat.
 - Nerfed Hand-to-Hand Combat: damage reduced from (15–30) to (9–19)
 - Nerfed Black Flash: damage reduced from 50 to 37
 
-
+## UPDATE 1.2
+- Added Sukuna special move: Cleave
+  - Deals 15–23 damage
+  - Includes HP clamping to prevent negative health
+  - Can be used by Sukuna AI
+- Minor bug fixes and balance adjustments
   
   
   
