@@ -6,7 +6,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        //Creates fighter with their starting health, names and max health
+        //Creates fighter with their starting health and names
         Fighter gojo = new Fighter(200, "Gojo", 200);
         Fighter sukuna = new Fighter(200, "Sukuna", 200);
         
@@ -119,10 +119,11 @@ class Program
                    while (gojo.IsAlive() && sukuna.IsAlive())
                    {
                        Console.WriteLine("Your move!");
-                       Console.WriteLine("1.    Hand to Hand (Basic Attack) ");
-                       Console.WriteLine("2.    Attack imbued with Cursed Energy (Has chance of 5% to land a Black Flash");
-                       Console.WriteLine("3.    Reverse Cursed Technique");
-                       Console.WriteLine("What's your move?: ");
+                       Console.WriteLine("[1] Hand to Hand (Basic Attack) ");
+                       Console.WriteLine("[2] Attack imbued with Cursed Energy (Has chance of 5% to land a Black Flash)");
+                       Console.WriteLine("[3] Cursed Technique Reversal: Red");
+                       Console.WriteLine("[4] Reverse Cursed Technique");
+                       Console.Write("What's your move?: ");
                         
                        //Validate user input
                        string? input = Console.ReadLine();
@@ -143,6 +144,9 @@ class Program
                                gojo.BlackFlash(sukuna);
                                break;
                            case 3:
+                               gojo.Red(sukuna);
+                               break;
+                           case 4:
                                gojo.GojoReverseCursedTechnique();
                                break;
                            default:
