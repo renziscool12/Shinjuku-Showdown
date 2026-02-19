@@ -15,7 +15,7 @@ class Fighter
     
     //rct uses
     private int rctUse = 3;
-        
+    private bool hasWarnedRCT = false;
     private int MaxHealth;
     //constructor
     public Fighter(int health, string name, int maxhealth)
@@ -72,7 +72,7 @@ class Fighter
     //AI so it can choose what skill it uses
     public void SukunaAi(Fighter target)
     {
-        int choice = Rnd.Next(1, 3);
+        int choice = Rnd.Next(1, 4);
         switch (choice)
         {
             case 1:
@@ -83,6 +83,9 @@ class Fighter
                 break;
             case 3:
                 Cleave(target);
+                break;
+            case 4:
+                Dismantle(target);
                 break;
         }
         //if below 30 it heals
@@ -124,12 +127,26 @@ class Fighter
         rctUse--;
     }
     
+    //added Dismantle for sukuna
+    //damage -> 24
+    public void Dismantle(Fighter target)
+    {
+        int damage = 24;
+        target.Health -= damage;
+        if (target.Health <= 0)
+        {
+            target.Health = 0;
+        }
+        Console.WriteLine($"{Name} uses Dismantle towards Gojo! {damage} damage!");
+    }
+    
     //if rctuse is 0 it prints this
     public void NoMoreRct()
     {
-        if (rctUse <= 0)
+        if (rctUse <= 0 && !hasWarnedRCT)
         {
             rctUse = 0;
+            hasWarnedRCT = true;
             Console.WriteLine($"{Name} can't use RCT due to overuse!");
         }
     }
@@ -147,6 +164,19 @@ class Fighter
         Console.WriteLine($"{Name} heals using RCT!");
         rctUse--;
         NoMoreRct();
+    }
+    
+    //added red for gojo
+    //damage -> 23
+    public void Red(Fighter target)
+    {
+        int damage = 23;
+        target.Health -= damage;
+        if (target.Health <= 0)
+        {
+           target.Health = 0;
+        }
+        Console.WriteLine($"{Name} fires red at Sukuna {damage} damage!");
     }
     
     //Cutscene for hitting Black Flash
