@@ -184,7 +184,7 @@ class Fighter
     //if wcsuse is 0 it do this
     public void NoMoreWcsUse()
     {
-        if (maxWcsUse <= 0 && !hasWarnedRCT)
+        if (maxWcsUse <= 0 && !hasWarnedWCS)
         {
             maxWcsUse = 0;
             hasWarnedRCT = true;
