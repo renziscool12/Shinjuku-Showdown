@@ -32,26 +32,40 @@ Fight between **Gojo** and **Sukuna** using hand-to-hand combat.
 - Expand game to multiple rounds or multiple fighters
 
 ## UPDATE 1.0
-- Buffed both fighters health 120 to 200
-- Added Black Flash for both fighters
-- Added Sukuna AI
-- Added cutscene for hitting Black Flash
+- Buffed both fighters’ health from **120 → 200**
+- Added **Black Flash** for both fighters
+- Implemented **Sukuna AI** to simulate smarter enemies
+- Added **cutscene for hitting Black Flash** to make attacks feel epic
 
 ## UPDATE 1.1
-- Added RCT healing mechanics:
-  - Sukuna AI
-  - Gojo/Player
-- Added MaxHealth and ensured RCT doesn’t exceed it
-- General bug fixes and balance tweaks
-- Nerfed Hand-to-Hand Combat: damage reduced from (15–30) to (9–19)
-- Nerfed Black Flash: damage reduced from 50 to 37
+- Introduced **RCT healing mechanics**:
+  - Sukuna AI can now heal strategically
+  - Gojo/Player can heal using RCT
+- Added **MaxHealth** and ensured healing doesn’t exceed it
+- General **bug fixes and balance tweaks**
+- Nerfed **Hand-to-Hand Combat**: damage reduced from 15–30 → 9–19
+- Nerfed **Black Flash**: damage reduced from 50 → 37
 
 ## UPDATE 1.2
-- Added Sukuna special move: Cleave
-  - Deals 15–23 damage
-  - Includes HP clamping to prevent negative health
-  - Can be used by Sukuna AI
-- Minor bug fixes and balance adjustments
+- Added **Sukuna special move: Cleave**
+  - Deals **15–23 damage**
+  - Includes **HP clamping** to prevent negative health
+  - Can be used strategically by **Sukuna AI**
+- Minor **bug fixes and balance adjustments**
+
+## UPDATE 1.3
+- Added Sukuna ultimate finisher: **World Cutting Slash (WCS)**
+  - Deals **65 damage**
+  - Includes **dramatic cutscene** with suspenseful build-up
+  - Limited usage with **`maxWcsUse`** to prevent spamming
+- Sukuna AI improvements:
+  - Automatically uses **Dismantle** when Gojo’s HP is low
+  - Automatically triggers **WCS** if Gojo cannot use RCT
+- Added **warning system** for both RCT and WCS to prevent repeated messages
+- Health and damage clamping improved:
+  - Prevents **Health exceeding MaxHealth**
+  - Prevents **WCS usage going negative**
+- Minor AI logic and balance tweaks for **fairer, more strategic fights**
   
   
   
