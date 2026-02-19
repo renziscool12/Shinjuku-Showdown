@@ -2,7 +2,12 @@
 
 A simple turn-based console game inspired by anime battles.  
 Fight between **Gojo** and **Sukuna** using hand-to-hand combat.  
-![Gojo vs Sukuna](https://raw.githubusercontent.com/renziscool12/Shinjuku-Showdown/main/gojo-vs-sukuna-domain-clash2.png)
+
+<!-- Updated GIF -->
+<p align="center">
+  <img src="https://raw.githubusercontent.com/renziscool12/Shinjuku-Showdown/main/Image/go%20vs%20su.gif" alt="Gojo vs Sukuna" width="500" />
+</p>
+
 ---
 
 ## Features
