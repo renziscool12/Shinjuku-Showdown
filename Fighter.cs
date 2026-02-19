@@ -15,8 +15,12 @@ class Fighter
     
     //rct uses
     private int rctUse = 3;
+    private int maxWcsUse = 3;
     private bool hasWarnedRCT = false;
     private int MaxHealth;
+    public bool CanUseRct => rctUse > 0;
+
+    public bool hasWarnedWCS = false;
     //constructor
     public Fighter(int health, string name, int maxhealth)
     {
@@ -94,7 +98,21 @@ class Fighter
            SukunaReverseCursedTechnique();
         }
         
-        //call the method
+        //if below 30 it automatically use dismantle
+        if (target.Health <= 30)
+        {
+            Dismantle(target);
+        }
+        
+        //if gojo/plauer ran out rct it automatically use wcs
+        if (!target.CanUseRct)
+        {
+            WorldCuttingSlash(target);
+        }
+        //call method if sukuna ran out of wcs
+        NoMoreWcsUse();
+        
+        //call the method if ran out of rct
         NoMoreRct();
 
     }
@@ -126,9 +144,21 @@ class Fighter
         Console.WriteLine($"{Name} heals using RCT!");
         rctUse--;
     }
+
+    //sukuna speical attack
+    public void WorldCuttingSlash(Fighter target)
+    {
+        int damage = 65;
+        target.Health -= damage;
+        if (target.Health <= 0)
+        {
+            target.Health = 0;
+        }
+        CutsceneWcs();
+        maxWcsUse--;
+    }
     
     //added Dismantle for sukuna
-    //damage -> 24
     public void Dismantle(Fighter target)
     {
         int damage = 24;
@@ -151,6 +181,17 @@ class Fighter
         }
     }
 
+    //if wcsuse is 0 it do this
+    public void NoMoreWcsUse()
+    {
+        if (maxWcsUse <= 0 && !hasWarnedRCT)
+        {
+            maxWcsUse = 0;
+            hasWarnedRCT = true;
+            Console.WriteLine($"{Name} can't chant WCS!");
+        }
+    }
+
     /*---GOJO'S RCT---*/
     public void GojoReverseCursedTechnique()
     {
@@ -167,7 +208,6 @@ class Fighter
     }
     
     //added red for gojo
-    //damage -> 23
     public void Red(Fighter target)
     {
         int damage = 23;
@@ -177,6 +217,37 @@ class Fighter
            target.Health = 0;
         }
         Console.WriteLine($"{Name} fires red at Sukuna {damage} damage!");
+    }
+
+    //cutscene for wcs
+    public void CutsceneWcs()
+    {
+        Console.Clear();
+        Console.WriteLine("(Sukuna chants)");
+        Thread.Sleep(1000);
+        Console.Clear();
+        Console.WriteLine("Scale of the Dragon");
+        Thread.Sleep(2000);
+        Console.WriteLine("Recoil. . .");
+        for (int cycle = 0; cycle < 3; cycle++)
+        {
+            for (int dot = 1; dot <= 3; dot++)
+            {
+                Console.Clear();
+                Console.WriteLine($"{new string('.',dot)}");
+                Thread.Sleep(500);
+            }
+        }
+        Console.Clear();
+        Console.WriteLine("Twin Meteors");
+        Thread.Sleep(1500);
+        Console.Clear();
+        Console.WriteLine("Dodge this if you can. . .");
+        Thread.Sleep(1500);
+        Console.Clear();
+        Console.WriteLine("(A slash capable of cleaving space itself descends. . . and it’s coming for you.)");
+        Thread.Sleep(2500);
+        Console.Clear();
     }
     
     //Cutscene for hitting Black Flash
