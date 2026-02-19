@@ -65,7 +65,11 @@ Fight between **Gojo** and **Sukuna** using hand-to-hand combat.
 - Health and damage clamping improved:
   - Prevents **Health exceeding MaxHealth**
   - Prevents **WCS usage going negative**
+- Added **Gojo special move: Red**
+  - Deals **23 damage**
+  - Can be used strategically by the player
 - Minor AI logic and balance tweaks for **fairer, more strategic fights**
+
   
   
   
