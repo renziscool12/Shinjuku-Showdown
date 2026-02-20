@@ -54,21 +54,20 @@ Fight between **Gojo** and **Sukuna** using hand-to-hand combat.
 - Minor **bug fixes and balance adjustments**
 
 ## UPDATE 1.3
-- Added Sukuna ultimate finisher: **World Cutting Slash (WCS)**
-  - Deals **65 damage**
-  - Includes **dramatic cutscene** with suspenseful build-up
-  - Limited usage with **`maxWcsUse`** to prevent spamming
-- Sukuna AI improvements:
-  - Automatically uses **Dismantle** when Gojo’s HP is low
-  - Automatically triggers **WCS** if Gojo cannot use RCT
-- Added **warning system** for both RCT and WCS to prevent repeated messages
-- Health and damage clamping improved:
-  - Prevents **Health exceeding MaxHealth**
-  - Prevents **WCS usage going negative**
-- Added **Gojo special move: Red**
+- Added **Sukuna’s ultimate move: World Cutting Slash (WCS)**
+  - Deals **massive 65 damage**
+  - **Displays damage dealt in real time** for immediate feedback
+  - Includes dramatic cutscene
+  - Limited uses (`maxWcsUse`) to keep fights balanced
+- Added **Gojo special attack: Red**
   - Deals **23 damage**
-  - Can be used strategically by the player
-- Minor AI logic and balance tweaks for **fairer, more strategic fights**
+  - Limited uses (`maxRed`) to prevent spamming
+  - Shows remaining Red uses for strategic play
+- Sukuna AI improvements:
+  - Automatically uses **Dismantle** when player HP ≤ 30
+  - Automatically uses **World Cutting Slash** when player can’t use RCT
+- Added **use-limit warnings** for RCT, WCS, and Red
+- Minor tweaks and balance adjustments for fairer, more tactical fights
 
   
   
