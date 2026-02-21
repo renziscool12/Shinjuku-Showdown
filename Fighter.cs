@@ -6,22 +6,28 @@
     {
         //fields
         private string Name { get; }
-        //encapsulation
         public int Health { get; private set; }
-        // Single shared Random instance for generating random numbers throughout the class.
-        // 'static' ensures all objects share the same Random (prevents duplicate seeds),
-        // 'readonly' means it can only be assigned once and not changed later.
+        private int MaxHealth;
+   
         private static readonly Random Rnd = new Random();
         
-        //rct uses
+        //Resources
         private int rctUse = 3;
         private int maxWcsUse = 3;
         private int maxRed = 7;
+        private int infinityLeft = 3;
         private bool hasWarnedRCT = false;
-        private int MaxHealth;
-        public bool CanUseRct => rctUse > 0;
-
         public bool hasWarnedWCS = false;
+        public bool CanUseRct => rctUse > 0;
+            
+        
+        //gojo infinity
+        private bool isInfinityActive = false;
+        public bool HasInfinity => isInfinityActive && infinityLeft > 0;
+        public int InfinityLeft => infinityLeft;
+        private int movesSinceLastInfinity;
+        
+        
         //constructor
         public Fighter(int health, string name, int maxhealth)
         {
@@ -30,19 +36,61 @@
             MaxHealth = maxhealth;
         }
 
+        public void TakeDamage(int damage, bool bypssInfinity = false)
+        {
+            if (isInfinityActive && !bypssInfinity)
+            {
+                Console.WriteLine($"{Name}'s Infinity blocks any incoming attack");
+                isInfinityActive = false;
+                return;
+            }
+
+            Health -= damage;
+            
+            if (Health <= 0)
+            {
+                Health = 0;
+            }
+        }
+
+        public void IncrementGojo()
+        {
+            movesSinceLastInfinity++;
+            if (movesSinceLastInfinity >= 3 && infinityLeft > 0)
+            {
+                isInfinityActive = true;
+                movesSinceLastInfinity = 0;
+                infinityLeft--;
+                Console.WriteLine($"Gojo turned on his Infinity!");
+            }
+        }
+
+        public void CheckInfinity()
+        {
+            if (isInfinityActive)
+            {
+                Console.WriteLine("Your Infinity is active!");
+            }
+            else if (infinityLeft > 0)
+            {
+                Console.WriteLine("Your infinity is inactive!");
+            }
+            else
+            {
+                Console.WriteLine("Your Infinity can no longer be activated!");
+            }
+            
+        }
+
         //Hand-to-hand Combat method
         public void HandToHand(Fighter target)
         {
             //deals some random damage between 9-19
             int damage = Rnd.Next(9, 19);
-            target.Health -= damage;
-            //prevents negative health
-            if (target.Health < 0)
-            {
-                target.Health = 0;
-            }
+            target.TakeDamage(damage);
             //Displays damage dealt to target from hand-to-hand attack
             Console.WriteLine($"{Name} has been hit for {damage} damage!");
+            IncrementGojo();
         }
 
         /*---BLACK FLASH---*/
@@ -53,7 +101,7 @@
             if (Rnd.Next(0, 101) <= 5)
             {
                 int damage = 37;
-                target.Health -= damage;
+                target.TakeDamage(damage);
                 Console.WriteLine($"{Name} unleashed BLACK FLASH for {damage} damage! CRITICAL HIT!");
                 BlackFlashCutscene();
                 Thread.Sleep(2000);
@@ -62,15 +110,9 @@
             {
                 //if black flash didn't occur
                 int damage = Rnd.Next(9, 18);
-                target.Health -= damage;
+                target.TakeDamage(damage);
                 //Displays damage dealt to target from cursed energy attack
                 Console.WriteLine($"{Name} landed a cursed energy attack {damage} damage!");
-            }
-
-            //prevents negative health
-            if (target.Health <= 0)
-            {
-                target.Health = 0;
             }
         }
 
@@ -123,12 +165,7 @@
         public void Cleave(Fighter target)
         {
             int damage = Rnd.Next(15, 23);
-            target.Health -= damage;
-            
-            if (target.Health <= 0)
-            {
-                target.Health = 0;
-            }
+            target.TakeDamage(damage);
             Console.WriteLine($"{Name} uses cleave for {damage} damage!");
         }
         
@@ -150,11 +187,7 @@
         public void WorldCuttingSlash(Fighter target)
         {
             int damage = 65;
-            target.Health -= damage;
-            if (target.Health <= 0)
-            {
-                target.Health = 0;
-            }
+            target.TakeDamage(damage, bypssInfinity:true);
             CutsceneWcs();
             Console.WriteLine($"{Name} uses his World Cutting Slash and deals massive {damage} damage!");
             maxWcsUse--;
@@ -164,11 +197,7 @@
         public void Dismantle(Fighter target)
         {
             int damage = 24;
-            target.Health -= damage;
-            if (target.Health <= 0)
-            {
-                target.Health = 0;
-            }
+           target.TakeDamage(damage);
             Console.WriteLine($"{Name} uses Dismantle towards Gojo! {damage} damage!");
         }
         
@@ -207,17 +236,14 @@
             Console.WriteLine($"{Name} heals using RCT!");
             rctUse--;
             NoMoreRct();
+            IncrementGojo();
         }
         
         //added red for gojo
         public void Red(Fighter target)
         {
             int damage = 23;
-            target.Health -= damage;
-            if (target.Health <= 0)
-            {
-               target.Health = 0;
-            }
+            target.TakeDamage(damage);
             
             if (maxRed <= 0)
             {
@@ -226,8 +252,8 @@
             }
             Console.WriteLine($"{Name} has {maxRed} Red remaining!");
             maxRed--;
-            
             Console.WriteLine($"{Name} fires red at Sukuna {damage} damage!");
+            IncrementGojo();
         }
 
         //cutscene for wcs
