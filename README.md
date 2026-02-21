@@ -28,7 +28,6 @@ Fight between **Gojo** and **Sukuna** using hand-to-hand combat.
 ## Soon to add/Improvements
 - Add multiple attack types  
 - Show health bars visually  
-- Add a “skip cutscene” feature  
 - Expand game to multiple rounds or multiple fighters
 
 ## UPDATE 1.0
@@ -69,7 +68,24 @@ Fight between **Gojo** and **Sukuna** using hand-to-hand combat.
 - Added **use-limit warnings** for RCT, WCS, and Red
 - Minor tweaks and balance adjustments for fairer, more tactical fights
 
-  
+## UPDATE 1.4
+
+- Added Gojo Infinity mechanic:
+ - Activates automatically after 3 moves
+ - Blocks the next incoming attack completely
+ - Limited uses (infinityLeft) to prevent overuse
+ - Players can check Infinity status anytime during their turn
+ -⚠️ Infinity is currently buggy in some edge cases—will be fixed in future updates
+- Added skip cutscene functionality:
+ - Press S during intro to skip directly to the fight
+ - Speeds up gameplay and testing
+- Improved Sukuna AI decision-making:
+ - Prioritizes healing when HP ≤ 30
+ - Uses WCS if Gojo can’t use RCT
+ - Selects moves strategically based on cooldowns and player HP
+- Minor bug fixes and balance tweaks:
+ - Black Flash now doesn’t increment Gojo moves (prevents accidental Infinity activation)
+ - Fixed Infinity boolean logic to avoid Gojo taking blocked damage
   
   
 
