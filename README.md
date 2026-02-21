@@ -75,7 +75,7 @@ Fight between **Gojo** and **Sukuna** using hand-to-hand combat.
   - Blocks the next incoming attack completely
   - Limited uses (infinityLeft) to prevent overuse
   - Players can check Infinity status anytime during their turn
-  -⚠️ Infinity is currently buggy in some edge cases—will be fixed in future updates
+  -⚠️Infinity is currently buggy in some edge cases—will be fixed in future updates
 - Added skip cutscene functionality:
   - Press S during intro to skip directly to the fight
   - Speeds up gameplay and testing
