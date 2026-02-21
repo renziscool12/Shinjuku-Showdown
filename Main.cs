@@ -10,8 +10,13 @@ class Program
         Fighter gojo = new Fighter(200, "Gojo", 200);
         Fighter sukuna = new Fighter(200, "Sukuna", 200);
         
-        //plays the intro
-        Cutscene();
+        //plays the intro   
+       Console.WriteLine("Press S to skip the intro. . .");
+       var key = Console.ReadKey(true);
+       if (key.Key != ConsoleKey.S)
+       {
+           Cutscene();
+       }
         
         //start the fight loop
         Fight(gojo, sukuna);
@@ -123,6 +128,7 @@ class Program
                        Console.WriteLine("[2] Attack imbued with Cursed Energy (Has chance of 5% to land a Black Flash)");
                        Console.WriteLine("[3] Cursed Technique Reversal: Red");
                        Console.WriteLine("[4] Reverse Cursed Technique");
+                       Console.WriteLine("[5] Check Infinity");
                        Console.Write("What's your move?: ");
                         
                        //Validate user input
@@ -149,6 +155,9 @@ class Program
                            case 4:
                                gojo.GojoReverseCursedTechnique();
                                break;
+                           case 5:
+                               gojo.CheckInfinity();
+                               break;
                            default:
                                Console.WriteLine("Not in the Choices!");
                                break;
@@ -158,9 +167,8 @@ class Program
                        if (sukuna.IsAlive())
                        {
                            sukuna.SukunaAi(gojo);
-                           Console.WriteLine("Sukuna turn!");
                            Console.WriteLine($"Gojo HP: {gojo.Health} - Sukuna HP: {sukuna.Health} ");
-                           Thread.Sleep(2000);
+                           Thread.Sleep(3000);
                            Console.Clear();
                        }
                    }
