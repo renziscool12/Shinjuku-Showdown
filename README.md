@@ -87,5 +87,5 @@ Fight between **Gojo** and **Sukuna** using hand-to-hand combat.
   - Black Flash now doesn’t increment Gojo moves (prevents accidental Infinity activation)
   - Fixed Infinity boolean logic to avoid Gojo taking blocked damage
   
-  
+  ## WONT UPDATING THIS GAME FOR A WHILE
 
